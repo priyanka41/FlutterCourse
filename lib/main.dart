@@ -1,4 +1,5 @@
-import 'package:design1/homepage.dart';
+import 'package:design1/pages/homepage.dart';
+import 'package:design1/pages/login.dart';
 import 'package:flutter/material.dart';
 
 
@@ -14,7 +15,16 @@ class MyAApp extends StatelessWidget {
    
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      theme: ThemeData(
+        brightness: Brightness.light,
+        primarySwatch: Colors.deepOrange,
+      ),
+     // home: HomePage(),
+     initialRoute: '/login',
+      routes: {
+        "/" : (context) => HomePage(),
+        '/login' : (context) => LoginPage(),
+      },
     );
   }
 }
