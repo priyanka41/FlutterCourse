@@ -1,5 +1,6 @@
 import 'package:design1/pages/homepage.dart';
 import 'package:design1/pages/login.dart';
+import 'package:design1/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -21,10 +22,11 @@ class MyAApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
       ),
      // home: HomePage(),
-     initialRoute: '/login',
+     initialRoute: '/',
       routes: {
-        "/" : (context) => HomePage(),
-        '/login' : (context) => LoginPage(),
+        "/" : (context) => LoginPage(),
+        MyRoutes.loginRoute : (context) => LoginPage(),
+        MyRoutes.homeRoute : (context) => HomePage(),
       },
     );
   }
