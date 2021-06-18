@@ -7,6 +7,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+   final _formkey = GlobalKey<FormState>();
+
   String name = '';
   @override
   Widget build(BuildContext context) {
@@ -40,36 +42,55 @@ class _LoginPageState extends State<LoginPage> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
-                child: Column(
-                  children: [
-                    TextFormField(
-                      decoration: InputDecoration(
-                        labelText: 'UserName',
-                        hintText: 'Enter username',
+                child: Form(
+                  key: _formkey,
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        decoration: InputDecoration(
+                          labelText: 'UserName',
+                          hintText: 'Enter username',
+                        ),
+                          onChanged: (value) {
+                          name= value;
+                          setState(() {});
+                        },
+                        validator: (value){
+                          if(value.isEmpty){
+                            return "enter username" ;
+                          }
+                          return null;
+                        },
                       ),
-                        onChanged: (value) {
-                        name= value;
-                        setState(() {});
-                      },
-                    ),
-                    TextFormField(
-                      obscureText: true,
-                     
-                      decoration: InputDecoration(
-                        labelText: 'Password',
-                        hintText: 'Enter Password',
+                      TextFormField(
+                        obscureText: true,
+                       
+                        decoration: InputDecoration(
+                          labelText: 'Password',
+                          hintText: 'Enter Password',
+                        ),
+                        validator: (value){
+                          if(value.isEmpty){
+                            return "password is required";
+                          }else  if (value.length<8){
+                            return "password must be more than 8 character" ;
+                          }
+                          return null;
+                        },
                       ),
-                    ),
-                    SizedBox(
-                      height: 40,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, MyRoutes.homeRoute);
-                      },
-                      child: Text('Login'),
-                    ),
-                  ],
+                      SizedBox(
+                        height: 40,
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          if(_formkey.currentState.validate()){
+                          Navigator.pushNamed(context, MyRoutes.homeRoute);
+                          }
+                        },
+                        child: Text('Login'),
+                      ),
+                    ],
+                  ),
                 ),
               )
             ],

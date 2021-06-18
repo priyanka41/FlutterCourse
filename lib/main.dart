@@ -22,7 +22,7 @@ class MyAApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
       ),
      // home: HomePage(),
-     initialRoute: '/',
+     initialRoute: MyRoutes.homeRoute,
       routes: {
         "/" : (context) => LoginPage(),
         MyRoutes.loginRoute : (context) => LoginPage(),
